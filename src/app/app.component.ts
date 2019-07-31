@@ -1,3 +1,4 @@
+import { ProductsService } from './products.service';
 import { Component } from '@angular/core';
 
 @Component({
@@ -6,5 +7,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app-client';
+  constructor(
+    private productsService: ProductsService){}
+
+  ngOnInit(){
+    this.productsService.getProducts().subscribe(prods => console.log(prods));
+  }
 }
