@@ -13,6 +13,8 @@ export class AppComponent {
 
   simpleReqProductsObs$: Observable<Product[]>;
   productsErrorHandling: Product[];
+  productsLoading: Product[];
+  bLoading: boolean = false;
 
   constructor(
     private productsService: ProductsService,
@@ -57,6 +59,20 @@ export class AppComponent {
       },
       (err) => {
         console.log(err);
+      }
+    )
+  }
+
+  getProductsLoading() {
+    this.bLoading = true;
+    this.productsService.getProductsDelay().subscribe(
+      (prods) => {
+        this.productsLoading = prods;
+        this.bLoading = false;
+      },
+      (err) => {
+        console.log(err);
+        this.bLoading = false;
       }
     )
   }
