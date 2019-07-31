@@ -18,4 +18,8 @@ export class ProductsService {
   getProductsError(): Observable<Product[]> {
     return this.http.get<Product[]>(`${this.url}/productserr`);
   }
+
+  getProductsDelay(): Observable<Product[]> {
+    return this.http.get<Product[]>(`${this.url}/productsdelay`);
+  }
 }

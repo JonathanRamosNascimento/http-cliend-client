@@ -17,18 +17,18 @@ export class AppComponent {
   constructor(
     private productsService: ProductsService,
     private snackBar: MatSnackBar
-    ){}
+  ) { }
 
-  ngOnInit(){
+  ngOnInit() {
   }
-  
+
   getSimpleHttpRequest() {
     this.simpleReqProductsObs$ = this.productsService.getProducts();
   }
 
   getProductsWithErrorHandling() {
     this.productsService.getProductsError().subscribe(
-      (prods) => {this.productsErrorHandling = prods; },
+      (prods) => { this.productsErrorHandling = prods; },
       (err) => {
         console.log(err);
         console.log('Message: ' + err.error.msg);
@@ -37,9 +37,9 @@ export class AppComponent {
         config.duration = 2000;
         config.panelClass = ['snack_err'];
 
-        if(err.status == 0 ) {
+        if (err.status == 0) {
           this.snackBar.open('Could not connect to the server', '', config);
-        }else{
+        } else {
           this.snackBar.open(err.error.msg, '', config);
         }
       }
@@ -47,6 +47,17 @@ export class AppComponent {
   }
 
   getProductsWithErrorHandlingOk() {
-
+    this.productsService.getProductsDelay().subscribe(
+      (prods) => {
+        this.productsErrorHandling = prods;
+        let config = new MatSnackBarConfig();
+        config.duration = 2000;
+        config.panelClass = ['snack_ok'];
+        this.snackBar.open('Products Successfuly loaded', '', config);
+      },
+      (err) => {
+        console.log(err);
+      }
+    )
   }
 }
