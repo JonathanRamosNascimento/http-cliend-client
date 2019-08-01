@@ -15,6 +15,7 @@ export class AppComponent {
   productsErrorHandling: Product[];
   productsLoading: Product[];
   bLoading: boolean = false;
+  productsId: Product[];
 
   constructor(
     private productsService: ProductsService,
@@ -75,5 +76,13 @@ export class AppComponent {
         this.bLoading = false;
       }
     )
+  }
+
+  getProductsIds() {
+
+  }
+
+  loadName(id: string) {
+    
   }
 }
