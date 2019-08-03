@@ -15,7 +15,7 @@ export class AppComponent {
   productsErrorHandling: Product[];
   productsLoading: Product[];
   bLoading: boolean = false;
-  productsId: Product[];
+  productsIds: Product[];
 
   constructor(
     private productsService: ProductsService,
@@ -79,10 +79,17 @@ export class AppComponent {
   }
 
   getProductsIds() {
-
+    this.productsService.getProductsIds().subscribe((ids) => {
+      this.productsIds = ids.map(id => ({_id: id, name: '', department: '', price: 0}));
+    })
   }
 
   loadName(id: string) {
-    
+    this.productsService.getProductName(id).subscribe((name=> {
+      let index = this.productsIds.findIndex(p => p._id===id);
+      if(index >= 0) {
+        this.productsIds[index].name = name;
+      }
+    }));
   }
 }
