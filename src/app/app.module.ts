@@ -6,10 +6,12 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { DialogEditProductComponent } from './dialog-edit-product/dialog-edit-product.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    DialogEditProductComponent
   ],
   imports: [
     BrowserModule,
