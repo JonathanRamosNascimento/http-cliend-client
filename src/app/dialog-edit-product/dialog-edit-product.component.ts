@@ -21,7 +21,7 @@ export class DialogEditProductComponent implements OnInit {
   ngOnInit() {
   }
 
-  concel() {
+  cancel() {
     this.dialogRef.close();
   }
 
